@@ -1,49 +1,16 @@
 document.addEventListener("DOMContentLoaded", function (event) {
 
-    const colorItemOne = document.getElementById('color-one');
-    const colorItemTwo = document.getElementById('color-two');
-    const colorItemThree = document.getElementById('color-three');
-
-    let defaultColorTwoThree = () => {
-        colorItemTwo.style.background = '#6c757d';
-        colorItemThree.style.background = '#6c757d';
-    }
-
-    let defaultColorOneThree = () => {
-        colorItemOne.style.background = '#6c757d';
-        colorItemThree.style.background = '#6c757d';
-    }
-
-    let defaultColorOneTwo = () => {
-        colorItemTwo.style.background = '#6c757d';
-        colorItemOne.style.background = '#6c757d';
-    }
-
-    let eOne = colorItemOne.addEventListener("click", (event) => {
-        event.target.style.background = '#911bff';
-        defaultColorTwoThree();
-    });
-
-    let eTwo = colorItemTwo.addEventListener("click", (event) => {
-        event.target.style.background = '#dfff2a';
-        defaultColorOneThree();
-
-    });
-
-    let eThree = colorItemThree.addEventListener("click", (event) => {
-        event.target.style.background = '#70ff2e';
-        defaultColorOneTwo();
-    });
-
-
-    /* let content = document.getElementById('content');
-    content = []; */
+    const colorOne = document.getElementById('color-one');
+    const colorTwo = document.getElementById('color-two');
+    const colorThree = document.getElementById('color-three');
 
     const mainButton = document.getElementById('new-task-submit');
 
     const form = document.querySelector('#new-task-form');
     const input = document.querySelector('#new-task-input');
-    const list_el = document.querySelector('#tasks')
+    const list_el = document.querySelector('#tasks');
+    const arr = [];
+    
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -95,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     row.removeAttribute('readonly');
                     row.focus();
                     edit.innerText = 'save';
-                    console.log(1)
                 } else {
                     row.setAttribute('readonly', 'readonly');
                     edit.innerText = 'edit';
@@ -105,7 +71,25 @@ document.addEventListener("DOMContentLoaded", function (event) {
             del.addEventListener('click', () => {
                 list_el.removeChild(content);
             })
+            
+            
 
+
+
+            /* colorOne.addEventListener('select', () =>{
+                console.log(1)
+            })
+
+            colorTwo.addEventListener('select', () =>{
+                console.log(2)
+            })
+
+            colorThree.addEventListener('select', () =>{
+                console.log(3)
+            })
+             */
+            
+            
         }
     })
 })

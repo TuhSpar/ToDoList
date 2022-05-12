@@ -48,18 +48,22 @@ header h1 {
 .color-box {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 20px;
 }
 
 .color-point {
+    appearance: none;
     background: var(--lightgrey);
-    border-radius: 1rem;
+    border-radius: 10px;
     height: 12px;
     width: 12px;
     transition: 0.2s;
     background-color: var(--lightgrey);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+     
 }
-
 
 
 .color-one:hover {
@@ -76,6 +80,36 @@ header h1 {
     background-color: #7cff40;
     border-radius: 100%;
 }
+
+.color-one:checked{
+    background-color: #a340ff;
+    border-radius: 100%;
+    width: 20px;
+    height: 10px;
+    border-radius: 4px;
+}
+
+.color-two:checked{
+    background-color: #e2ff40;
+    border-radius: 100%;
+    width: 20px;
+    height: 10px;
+    border-radius: 4px;
+}
+
+
+.color-three:checked{
+    background-color: #7cff40;
+    border-radius: 100%;
+    width: 20px;
+    height: 10px;
+    border-radius: 4px;
+}
+
+
+
+
+
 
 input,
 button {
