@@ -34,6 +34,13 @@ header {
     align-content: center;
 }
 
+button {
+    display: block;
+    /* padding: 5px; */
+    /* margin: 3px; */
+    position: absolute;
+}
+
 header h1 {
     font-size: 40px;
     font-weight: 300;
@@ -62,9 +69,7 @@ header h1 {
     background-color: var(--lightgrey);
     -webkit-appearance: none;
     -moz-appearance: none;
-     
 }
-
 
 .color-one:hover {
     background-color: #a340ff;
@@ -81,7 +86,7 @@ header h1 {
     border-radius: 100%;
 }
 
-.color-one:checked{
+.color-one:checked {
     background-color: #a340ff;
     border-radius: 100%;
     width: 20px;
@@ -89,7 +94,7 @@ header h1 {
     border-radius: 4px;
 }
 
-.color-two:checked{
+.color-two:checked {
     background-color: #e2ff40;
     border-radius: 100%;
     width: 20px;
@@ -97,19 +102,13 @@ header h1 {
     border-radius: 4px;
 }
 
-
-.color-three:checked{
+.color-three:checked {
     background-color: #7cff40;
     border-radius: 100%;
     width: 20px;
     height: 10px;
     border-radius: 4px;
 }
-
-
-
-
-
 
 input,
 button {
@@ -130,14 +129,13 @@ button {
     font-weight: 600;
 }
 
-#new-task-input::placeholder{
-    color:#282a2c;
+#new-task-input::placeholder {
+    color: #282a2c;
 }
 
-#new-task-submit{
+#new-task-submit {
     margin-left: 10px;
-    background-image: linear-gradient(to left, #ef476f,
-    #9e56f0);
+    background-image: linear-gradient(to left, #ef476f, #9e56f0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 20px;
@@ -149,19 +147,18 @@ button {
     border-color: var(--purple);
 }
 
-#new-task-submit:hover{
-    background-image: linear-gradient(to left, #eb3660,
-    #943ef5);
+#new-task-submit:hover {
+    background-image: linear-gradient(to left, #eb3660, #943ef5);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     opacity: 60%;
 }
 
-.task-header{
+.task-header {
     margin-left: 1rem;
 }
 
-.task-list{
+.task-list {
     margin: 0 auto;
     padding: 32px 16px;
     width: 100%;
@@ -169,20 +166,20 @@ button {
     align-content: center;
 }
 
-.task-list .task-header{
+.task-list .task-header {
     font-size: 40px;
     font-weight: 300;
     color: var(--grey);
     margin-bottom: 1rem;
 }
 
-.task-content{
+.task-content {
     display: flex;
     margin: 10px;
     justify-content: space-between;
 }
 
-.task{
+.task {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -190,21 +187,20 @@ button {
     transition: 0.5s;
 }
 
-.content{
+.content {
     display: flex;
     flex-direction: row;
 }
 
-.task-color-point{
+.task-color-point {
     width: 3px;
     height: 43px;
     border-radius: 7px;
-    background-color:#a340ff;
+    /* background-color: #a340ff; */
     margin-right: 2px;
-    
 }
 
-.task-row{
+.task-row {
     flex: 1 1 0%;
     background-color: var(--darker);
     padding: 0.7rem;
@@ -217,26 +213,33 @@ button {
     transition: 0.4s;
 }
 
-.task-row::placeholder{
-    color:#b8b9bb;
+.task-row::placeholder {
+    color: #b8b9bb;
 }
 
-.task-row:not(:read-only){
+.task-row:not(:read-only) {
     color: rgb(255, 146, 166);
 }
 
-
-
-.actions{
-    padding-left: 6.5px;
-    display: flex;
-    justify-content: center;
-    width: 130px;
+.actions {
+    padding-left: 6px;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center; */
+    width: 230px;
+    position: relative;
 }
 
- .edit{
-    background-image: linear-gradient(to left, #ef476f,
-    #9e56f0);
+
+/* .actionsContainer {
+    width: 150px;
+    height: 30px;
+    margin: 5px;
+}
+ */
+
+.edit {
+    background-image: linear-gradient(to left, #ef476f, #9e56f0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 15px;
@@ -246,9 +249,10 @@ button {
     border-radius: 10px;
     text-transform: uppercase;
     display: block;
+    padding-top: 3px;
 }
 
-.delete{
+.delete {
     color: crimson;
     font-size: 15px;
     font-weight: 700;
@@ -257,16 +261,17 @@ button {
     border-radius: 10px;
     text-transform: uppercase;
     display: block;
+    margin-top: 23px;
 }
 
-.actions button{
+.actions button {
     transition: 0.2s;
 }
 
-.actions button:hover{
+.actions button:hover {
     opacity: 80%;
 }
 
-.actions button:active{
+.actions button:active {
     opacity: 60%;
 }

@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("DOMContentLoaded", function(event) {
 
     const colorOne = document.getElementById('color-one');
     const colorTwo = document.getElementById('color-two');
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     const input = document.querySelector('#new-task-input');
     const list_el = document.querySelector('#tasks');
     const arr = [];
-    
+
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -28,9 +28,23 @@ document.addEventListener("DOMContentLoaded", function (event) {
             content_item.classList.add('content');
             content.appendChild(content_item);
 
-            const indicator = document.createElement('div'); //COLOR INDICATOR
-            indicator.classList.add('task-color-point');
-            content_item.appendChild(indicator);
+
+            if (colorOne.checked) {
+                const indicator = document.createElement('div'); //COLOR INDICATOR
+                indicator.classList.add('task-color-point');
+                content_item.appendChild(indicator);
+                indicator.style.backgroundColor = '#a340ff';
+            } else if (colorTwo.checked) {
+                const indicator = document.createElement('div'); //COLOR INDICATOR
+                indicator.classList.add('task-color-point');
+                content_item.appendChild(indicator);
+                indicator.style.backgroundColor = '#e2ff40';
+            } else if (colorThree.checked) {
+                const indicator = document.createElement('div'); //COLOR INDICATOR
+                indicator.classList.add('task-color-point');
+                content_item.appendChild(indicator);
+                indicator.style.backgroundColor = '#7cff40';
+            }
 
             const row = document.createElement('input'); //TASK EDITOR-INPUT
             row.classList.add('task-row');
@@ -43,15 +57,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
             actions.classList.add('actions');
             content.appendChild(actions);
 
+            const actionsContainer = document.createElement('div');
+            actions.appendChild(actionsContainer);
+            actionsContainer.classList.add('actionsContainer');
+
             const edit = document.createElement('button'); //EDIT-BUTTON
             edit.classList.add('edit');
-            actions.appendChild(edit);
+            actionsContainer.appendChild(edit);
             edit.innerHTML = 'edit';
 
             const del = document.createElement('button'); //DELETE-BUTTON
             del.classList.add('delete');
-            actions.appendChild(del);
-            del.innerHTML = 'delete';
+            actionsContainer.appendChild(del);
+            del.innerHTML = 'DEL';
 
             list_el.appendChild(content);
 
@@ -71,27 +89,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             del.addEventListener('click', () => {
                 list_el.removeChild(content);
             })
-            
-            
 
-
-
-            /* colorOne.addEventListener('select', () =>{
-                console.log(1)
-            })
-
-            colorTwo.addEventListener('select', () =>{
-                console.log(2)
-            })
-
-            colorThree.addEventListener('select', () =>{
-                console.log(3)
-            })
-             */
-            
-            
         }
     })
 })
-
-
