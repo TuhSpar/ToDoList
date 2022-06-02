@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const list_el = document.querySelector('#tasks');
     const arr = [];
 
-    let submit = form.addEventListener('submit', (e) => {
+   form.addEventListener('submit', (e) => {
         e.preventDefault();
 
         const task = input.value;
@@ -28,27 +28,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 content_item.classList.add('content');
                 content.appendChild(content_item);
 
-
-                let num = 0;
-
                 if (colorOne.checked) {
                     const indicatorOne = document.createElement('div'); //COLOR INDICATOR
                     indicatorOne.classList.add('task-color-point');
                     content_item.appendChild(indicatorOne);
                     indicatorOne.style.backgroundColor = '#a340ff';
-                    num = 1;
+                    content_item.dataset.color_key = '1';
                 } else if (colorTwo.checked) {
                     const indicatorTwo = document.createElement('div'); //COLOR INDICATOR
                     indicatorTwo.classList.add('task-color-point');
                     content_item.appendChild(indicatorTwo);
                     indicatorTwo.style.backgroundColor = '#ff4040';
-                    num = 2;
+                    content_item.dataset.color_key = '2';
                 } else if (colorThree.checked) {
                     const indicatorThree = document.createElement('div'); //COLOR INDICATOR
                     indicatorThree.classList.add('task-color-point');
                     content_item.appendChild(indicatorThree);
                     indicatorThree.style.backgroundColor = '#7cff40';
-                    num = 3;
+                    content_item.dataset.color_key = '3';
                 }
 
                 const row = document.createElement('input'); //TASK EDITOR-INPUT
@@ -95,31 +92,37 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     list_el.removeChild(content);
                 })
 
-
-                return num;
-
-                arr.sort((a, b) => {
-                    if (a > b) {
-                        return 1;
-                    } else if (a == b) {
-                        return 0;
-                    } else if (a < b) {
-                        return -1;
-                    }
-                });
+                //Add item to list
+                arr.push(content_item);
             }
 
-            arr.push(createContentAll());
-            console.log(arr)
-
-
-
-
+            createContentAll();
+            //sort and apply new elements list
+            applyNewListData();
         }
 
 
-
-
     })
+
+    function applyNewListData(){
+       //Sorting items by color key
+        arr.sort((a, b) => {
+            if (a.dataset.color_key > b.dataset.color_key) {
+                return 1;
+            } else if (a.dataset.color_key === b.dataset.color_key) {
+                return 0;
+            } else if (a.dataset.color_key < b.dataset.color_key) {
+                return -1;
+            }
+        });
+
+        //Clean container before apply new elements from array
+        list_el.innerHTML = '';
+
+        //Apply new items to list container
+       arr.forEach((el) =>{
+           list_el.appendChild(el);
+       })
+    }
 
 })
