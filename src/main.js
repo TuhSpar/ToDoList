@@ -11,8 +11,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const list_el = document.querySelector('#tasks');
     const arr = [];
 
-
-    form.addEventListener('submit', (e) => {
+    let submit = form.addEventListener('submit', (e) => {
         e.preventDefault();
 
         const task = input.value;
@@ -21,75 +20,102 @@ document.addEventListener("DOMContentLoaded", function(event) {
             alert('Please add a task')
         } else {
 
-            const content = document.createElement('div'); //MAIN WRAPPER
-            content.classList.add('task');
+            const createContentAll = () => {
+                const content = document.createElement('div'); //MAIN WRAPPER
+                content.classList.add('task');
 
-            const content_item = document.createElement('div'); //EDITOR-INPUT WRAPPER
-            content_item.classList.add('content');
-            content.appendChild(content_item);
+                const content_item = document.createElement('div'); //EDITOR-INPUT WRAPPER
+                content_item.classList.add('content');
+                content.appendChild(content_item);
 
 
-            if (colorOne.checked) {
-                const indicator = document.createElement('div'); //COLOR INDICATOR
-                indicator.classList.add('task-color-point');
-                content_item.appendChild(indicator);
-                indicator.style.backgroundColor = '#a340ff';
-            } else if (colorTwo.checked) {
-                const indicator = document.createElement('div'); //COLOR INDICATOR
-                indicator.classList.add('task-color-point');
-                content_item.appendChild(indicator);
-                indicator.style.backgroundColor = '#e2ff40';
-            } else if (colorThree.checked) {
-                const indicator = document.createElement('div'); //COLOR INDICATOR
-                indicator.classList.add('task-color-point');
-                content_item.appendChild(indicator);
-                indicator.style.backgroundColor = '#7cff40';
+                if (colorOne.checked) {
+                    const indicatorOne = document.createElement('div'); //COLOR INDICATOR
+                    indicatorOne.classList.add('task-color-point');
+                    content_item.appendChild(indicatorOne);
+                    indicatorOne.style.backgroundColor = '#a340ff';
+                } else if (colorTwo.checked) {
+                    const indicatorTwo = document.createElement('div'); //COLOR INDICATOR
+                    indicatorTwo.classList.add('task-color-point');
+                    content_item.appendChild(indicatorTwo);
+                    indicatorTwo.style.backgroundColor = '#ff4040';
+                } else if (colorThree.checked) {
+                    const indicatorThree = document.createElement('div'); //COLOR INDICATOR
+                    indicatorThree.classList.add('task-color-point');
+                    content_item.appendChild(indicatorThree);
+                    indicatorThree.style.backgroundColor = '#7cff40';
+                }
+
+                const row = document.createElement('input'); //TASK EDITOR-INPUT
+                row.classList.add('task-row');
+                row.value = task;
+                row.type = 'text';
+                row.setAttribute('readonly', 'readonly')
+                content_item.appendChild(row);
+
+                const actions = document.createElement('div'); // BUTTTONS
+                actions.classList.add('actions');
+                content.appendChild(actions);
+
+                const actionsContainer = document.createElement('div');
+                actions.appendChild(actionsContainer);
+                actionsContainer.classList.add('actionsContainer');
+
+                const edit = document.createElement('button'); //EDIT-BUTTON
+                edit.classList.add('edit');
+                actionsContainer.appendChild(edit);
+                edit.innerHTML = 'edit';
+
+                const del = document.createElement('button'); //DELETE-BUTTON
+                del.classList.add('delete');
+                actionsContainer.appendChild(del);
+                del.innerHTML = 'DEL';
+
+                list_el.appendChild(content);
+
+                input.value = "";
+
+                edit.addEventListener('click', () => {
+                    if (edit.innerHTML.toLowerCase() == 'edit') {
+                        row.removeAttribute('readonly');
+                        row.focus();
+                        edit.innerText = 'save';
+                    } else {
+                        row.setAttribute('readonly', 'readonly');
+                        edit.innerText = 'edit';
+                    }
+                })
+
+                del.addEventListener('click', () => {
+                    list_el.removeChild(content);
+                })
+
+
+
             }
 
-            const row = document.createElement('input'); //TASK EDITOR-INPUT
-            row.classList.add('task-row');
-            row.value = task;
-            row.type = 'text';
-            row.setAttribute('readonly', 'readonly')
-            content_item.appendChild(row);
 
-            const actions = document.createElement('div'); // BUTTTONS
-            actions.classList.add('actions');
-            content.appendChild(actions);
+            arr.push(createContentAll());
 
-            const actionsContainer = document.createElement('div');
-            actions.appendChild(actionsContainer);
-            actionsContainer.classList.add('actionsContainer');
-
-            const edit = document.createElement('button'); //EDIT-BUTTON
-            edit.classList.add('edit');
-            actionsContainer.appendChild(edit);
-            edit.innerHTML = 'edit';
-
-            const del = document.createElement('button'); //DELETE-BUTTON
-            del.classList.add('delete');
-            actionsContainer.appendChild(del);
-            del.innerHTML = 'DEL';
-
-            list_el.appendChild(content);
-
-            input.value = "";
-
-            edit.addEventListener('click', () => {
-                if (edit.innerHTML.toLowerCase() == 'edit') {
-                    row.removeAttribute('readonly');
-                    row.focus();
-                    edit.innerText = 'save';
-                } else {
-                    row.setAttribute('readonly', 'readonly');
-                    edit.innerText = 'edit';
+            arr.sort((a, b) => {
+                if (createContentAll().indicator.style.backgroundColor = '#a340ff') {
+                    a > b;
+                } else if (createContentAll().indicator.style.backgroundColor = '#ff4040') {
+                    a == b;
+                } else if (createContentAll().indicator.style.backgroundColor = '#7cff40') {
+                    a < b;
                 }
             })
 
-            del.addEventListener('click', () => {
-                list_el.removeChild(content);
-            })
+            console.log(arr)
+
+
 
         }
+
+
+
+
     })
+
 })
