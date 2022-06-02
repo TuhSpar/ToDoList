@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             alert('Please add a task')
         } else {
 
-            const createContentAll = () => {
+            const createContentAll = function() {
                 const content = document.createElement('div'); //MAIN WRAPPER
                 content.classList.add('task');
 
@@ -29,21 +29,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 content.appendChild(content_item);
 
 
+                let num = 0;
+
                 if (colorOne.checked) {
                     const indicatorOne = document.createElement('div'); //COLOR INDICATOR
                     indicatorOne.classList.add('task-color-point');
                     content_item.appendChild(indicatorOne);
                     indicatorOne.style.backgroundColor = '#a340ff';
+                    num = 1;
                 } else if (colorTwo.checked) {
                     const indicatorTwo = document.createElement('div'); //COLOR INDICATOR
                     indicatorTwo.classList.add('task-color-point');
                     content_item.appendChild(indicatorTwo);
                     indicatorTwo.style.backgroundColor = '#ff4040';
+                    num = 2;
                 } else if (colorThree.checked) {
                     const indicatorThree = document.createElement('div'); //COLOR INDICATOR
                     indicatorThree.classList.add('task-color-point');
                     content_item.appendChild(indicatorThree);
                     indicatorThree.style.backgroundColor = '#7cff40';
+                    num = 3;
                 }
 
                 const row = document.createElement('input'); //TASK EDITOR-INPUT
@@ -91,23 +96,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 })
 
 
+                return num;
 
+                arr.sort((a, b) => {
+                    if (a > b) {
+                        return 1;
+                    } else if (a == b) {
+                        return 0;
+                    } else if (a < b) {
+                        return -1;
+                    }
+                });
             }
 
-
             arr.push(createContentAll());
-
-            arr.sort((a, b) => {
-                if (createContentAll().indicator.style.backgroundColor = '#a340ff') {
-                    a > b;
-                } else if (createContentAll().indicator.style.backgroundColor = '#ff4040') {
-                    a == b;
-                } else if (createContentAll().indicator.style.backgroundColor = '#7cff40') {
-                    a < b;
-                }
-            })
-
             console.log(arr)
+
 
 
 
