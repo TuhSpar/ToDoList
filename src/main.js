@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 })
 
                 //Add item to list
-                arr.push(content_item);
+                arr.push(content);
             }
 
             createContentAll();
@@ -107,11 +107,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function applyNewListData(){
        //Sorting items by color key
         arr.sort((a, b) => {
-            if (a.dataset.color_key > b.dataset.color_key) {
+            if (a.querySelector('.content').dataset.color_key > b.querySelector('.content').dataset.color_key) {
                 return 1;
-            } else if (a.dataset.color_key === b.dataset.color_key) {
+            } else if (a.querySelector('.content').dataset.color_key === b.querySelector('.content').dataset.color_key) {
                 return 0;
-            } else if (a.dataset.color_key < b.dataset.color_key) {
+            } else if (a.querySelector('.content').dataset.color_key < b.querySelector('.content').dataset.color_key) {
                 return -1;
             }
         });
