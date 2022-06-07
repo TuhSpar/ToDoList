@@ -4,14 +4,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const colorTwo = document.getElementById('color-two');
     const colorThree = document.getElementById('color-three');
 
-    const mainButton = document.getElementById('new-task-submit');
-
     const form = document.querySelector('#new-task-form');
     const input = document.querySelector('#new-task-input');
     const list_el = document.querySelector('#tasks');
     const arr = [];
 
-   form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', (e) => {
         e.preventDefault();
 
         const task = input.value;
@@ -23,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             const createContentAll = function() {
                 const content = document.createElement('div'); //MAIN WRAPPER
                 content.classList.add('task');
+
 
                 const content_item = document.createElement('div'); //EDITOR-INPUT WRAPPER
                 content_item.classList.add('content');
@@ -77,21 +76,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
                 input.value = "";
 
-                edit.addEventListener('click', () => {
-                    if (edit.innerHTML.toLowerCase() == 'edit') {
-                        row.removeAttribute('readonly');
-                        row.focus();
-                        edit.innerText = 'save';
-                    } else {
-                        row.setAttribute('readonly', 'readonly');
-                        edit.innerText = 'edit';
-                    }
-                })
-
-                del.addEventListener('click', () => {
-                    list_el.removeChild(content);
-                })
-
                 //Add item to list
                 arr.push(content);
             }
@@ -99,13 +83,37 @@ document.addEventListener("DOMContentLoaded", function(event) {
             createContentAll();
             //sort and apply new elements list
             applyNewListData();
+
+            /* localStorage.setItem('null', JSON.stringify(document.getElementById('task')));
+            console.log(localStorage)
+            localStorage.clear(); */
         }
 
 
+        for (let key of arr) {
+            key.querySelector('.delete').addEventListener('click', () => {
+                key.remove();
+                arr.splice(this, 1);
+                console.log(arr);
+            })
+        }
+
+        for (let key of arr) {
+            key.querySelector('.edit').addEventListener('click', () => {
+                if (key.querySelector('.edit').innerHTML.toLowerCase() == 'edit') {
+                    key.querySelector('.task-row').removeAttribute('readonly');
+                    key.querySelector('.task-row').focus();
+                    key.querySelector('.edit').innerText = 'save';
+                } else {
+                    key.querySelector('.task-row').setAttribute('readonly', 'readonly');
+                    key.querySelector('.edit').innerText = 'edit';
+                }
+            })
+        }
     })
 
-    function applyNewListData(){
-       //Sorting items by color key
+    function applyNewListData() {
+        //Sorting items by color key
         arr.sort((a, b) => {
             if (a.querySelector('.content').dataset.color_key > b.querySelector('.content').dataset.color_key) {
                 return 1;
@@ -120,9 +128,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         list_el.innerHTML = '';
 
         //Apply new items to list container
-       arr.forEach((el) =>{
-           list_el.appendChild(el);
-       })
+        arr.forEach((el) => {
+            list_el.appendChild(el);
+        })
     }
+
 
 })
