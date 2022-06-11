@@ -83,6 +83,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 del.addEventListener('click', (element) => {
                     //Get target element item
                     const target = element.target.parentElement.parentElement.parentElement;
+                    //Or you can get target element more simple and like this in your case:
+                    // const target = content;
+
                     //Get index of this element from array
                     const index = arr.indexOf(target);
                     //Remove element from array
