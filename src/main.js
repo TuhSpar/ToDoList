@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const input = document.querySelector('#new-task-input');
     const list_el = document.querySelector('#tasks');
     const arr = [];
+    let id = 0;
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -21,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
             const createContentAll = function() {
                 const content = document.createElement('div'); //MAIN WRAPPER
                 content.classList.add('task');
-
 
                 const content_item = document.createElement('div'); //EDITOR-INPUT WRAPPER
                 content_item.classList.add('content');
@@ -78,6 +78,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
                 //Add item to list
                 arr.push(content);
+
+                //Delete button action
+                del.addEventListener('click', (element) => {
+                    //Get target element item
+                    const target = element.target.parentElement.parentElement.parentElement;
+                    //Get index of this element from array
+                    const index = arr.indexOf(target);
+                    //Remove element from array
+                    arr.splice(index, 1);
+                    //Remove element from DOM
+                    target.remove();
+                });
             }
 
             createContentAll();
@@ -87,15 +99,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
             /* localStorage.setItem('null', JSON.stringify(document.getElementById('task')));
             console.log(localStorage)
             localStorage.clear(); */
-        }
-
-
-        for (let key of arr) {
-            key.querySelector('.delete').addEventListener('click', () => {
-                key.remove();
-                arr.splice(this, 1);
-                console.log(arr);
-            })
         }
 
         for (let key of arr) {
@@ -130,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         //Apply new items to list container
         arr.forEach((el) => {
             list_el.appendChild(el);
-        })
+        });
     }
 
 
